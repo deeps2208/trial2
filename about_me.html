@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Afacad:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Calistoga&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Basic Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        .afacad-light {
+                font-family: "Afacad", sans-serif;
+                font-optical-sizing: auto;
+                font-weight: 400;
+                }
+                .afacad-bold {
+                font-family: "Afacad", sans-serif;
+                font-optical-sizing: auto;
+                font-weight: 700;
+                }
+        body {
+                    background-color: rgb(255, 251, 244);
+                    
+                    margin-top: 20px;
+                }
+        .calistoga-regular {
+                font-family: "Calistoga", serif;
+                font-weight: 400;
+                font-style: normal;
+                }
+
+
+        header {
+            background-color: rgb(255, 251, 244);
+            padding: 10px 20px;
+            position: fixed; /* Make the navbar stay on top */
+            top: 0;
+            width:100%;
+            z-index: 1000; 
+            
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo img {
+            width: 40px; /* Adjust logo size */
+            height: auto;
+            padding-top: 10px;
+            margin-left: 40px;
+        }
+
+        .nav-links {
+            
+            list-style: none;
+            display: flex;
+        }
+
+        .nav-links li {
+            margin-left: 30px;
+            
+        }
+
+        .nav-links a {
+            color: #2D3B66;
+            text-decoration: none;
+            font-size: 1rem;
+            transition: color 0.15s ease;
+        }
+
+        .nav-links a:hover {
+            color: #E5887A;
+            font-weight: 700;
+        }
+
+        /* Hamburger Menu */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        .hamburger .bar {
+            width: 25px;
+            height: 4px;
+            background-color: #2D3B66;
+            border-radius: 5px;
+            margin: 3px;
+            transition: all 0.15s ease;
+            
+        }
+
+        /* Responsive Styling */
+        @media (max-width: 768px) {
+            .nav-links {
+                position: absolute;
+                right: -80px;
+                top: 70px;
+                height: 90vh;
+                width: 100%;
+                
+                background-color: rgb(255,252,244);
+                flex-direction: column;
+                align-items: center;
+                justify-content: space-around;
+                transform: translateX(100%);
+                transition: transform 0.3s ease-in;
+            }
+
+            .nav-links li {
+                margin: 20px 0;
+            }
+
+            .hamburger {
+                display: flex;
+                margin-right: 30px;
+            }
+
+            .nav-active {
+                transform: translateX(0);
+            }
+        }
+
+        
+         /* Responsive Image Overlap Container */
+        .image-container {
+            width: 100%;
+            margin: 50px auto;
+            display: flex;
+        }
+
+        .image-overlap {
+            position: relative; /* Relative positioning to contain absolute images */
+            width: 100%;
+            height: auto;
+        }
+
+        .image-1 {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%; /* Full width, will scale with container */
+            height: auto;
+            z-index: 2; /* This will be above the second image */
+        }
+
+        /* Second Image */
+        .image-2 {
+            position: absolute;
+            top: 20px; /* Adjust the amount of overlap */
+            width: 100%; /* Make the second image a bit smaller */
+            height: 650px;
+            z-index: 1; 
+            
+        }
+        .image-3 {
+            position: absolute;
+            top: 20px; /* Adjust the amount of overlap */
+            width: 100%; /* Make the second image a bit smaller */
+            height: 450px;
+            margin-top: 280px;
+            z-index: 3; 
+            
+        }
+
+        .image-4 {
+            position: absolute;
+            top: 20px; /* Adjust the amount of overlap */
+            width: 100%; /* Make the second image a bit smaller */
+            height: 650px;
+            margin-top: 150px;
+            z-index: 5; 
+            
+        }
+
+        .image-5 {
+            position: absolute;
+            top: 20px; /* Adjust the amount of overlap */
+            width: 100%; /* Make the second image a bit smaller */
+            
+            margin-top: 680px;
+            z-index: 6; 
+            
+        }
+        
+                @keyframes rotate {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+            /* Image styling */
+            .rotating-image {
+                position: absolute;
+                width: 70px; /* Adjust the size as needed */
+                height: auto;
+                margin-top: 210px;
+                z-index: 9;
+                animation: rotate 5s linear infinite; /* Continuous rotation */
+            }
+
+
+        .overlay-text {
+            position: absolute;
+            top: 50px;
+            z-index: 4;
+            color: white; /* Text color */
+            text-align: center; /* Center-align the text */
+            width: 100%; /* Adjust width */
+            font-size:  170px;
+        }
+
+        .overlay-text p {
+            font-size: 64px;
+            
+        }
+
+        .image-container2 {
+            width: 100%;
+            margin: 50px auto;
+            display: flex;
+        }
+        .image-overlap2 {
+            position: relative; /* Relative positioning to contain absolute images */
+            width: 100%;
+            height: auto;
+        }
+
+        .container2 {
+            display: flex; /* Use flexbox to create a responsive layout */
+            flex-wrap: wrap; /* Allow items to wrap to the next line */
+            gap: 70px; /* Add space between boxes */
+            width: 100%;
+            justify-content: center;
+            z-index: 2;
+            
+        }
+
+        .box1 {
+    position: relative; /* For absolute positioning of hover text */
+    background-color: #D3F2D1; /* Default background color */
+    padding-left: 60px;
+    padding-right: 60px;
+    text-align: left; /* Align text to the left */
+    text-decoration: none; /* Remove underline from links */
+    color: #333; /* Text color */
+    overflow: hidden; /* Prevent overflow for hover text */
+    transition: background-color 0.4s ease; /* Smooth transition */
+    border-radius: 30px; /* Rounded corners */
+    width: 650px;
+    height: 350px;
+    font-family: 'Afacad', sans-serif;
+    font-size: 32px;
+    box-shadow: 7px 7px 0px #84B78F;
+            
+        
+}
+
+.box1:hover {
+    background-color: #D3F2D1; /* Change color on hover */
+    cursor: pointer;
+}
+
+.content {
+    position: relative; /* Allow for absolute positioning of hover text within this div */
+}
+
+.title1 {
+    margin: 0; /* Remove default margin */
+    padding-top: 260px;
+    transition: transform 0.4s ease-in-out; /* Add ease-in-out for smoothness */
+}
+
+.hover-text1 {
+    position: absolute; /* Positioning for hover text */
+    bottom: -340px; /* Start below the box */
+    left: 0; /* Align to the left */
+    transition: bottom 0.3s ease-in-out, opacity 0.3s ease-in-out; /* Smooth transition for movement */
+    opacity: 0; /* Initially transparent */
+
+}
+
+.box1:hover .hover-text1 {
+    bottom:-5px; /* Move text into view */
+    opacity: 1; /* Fade in */
+}
+
+.box1:hover .title1 {
+    transform: translateY(-240px); /* Move title up when hovering */
+}
+
+.box1 .hover-text1, .box1 .title1 {
+    transition: all 0.4s ease-in-out; /* Smooth animation on both hover-in and hover-out */
+}
+
+        .text-block1 {
+                font-family: 'Afacad', sans-serif; /* Apply Afacad font to the text block */
+                font-size: 24px;
+                line-height: 1.6;
+                color: #4c4c4c;
+                flex: 3;
+                
+            }
+            .about-section {
+            position: absolute; /* Positioning to allow smooth transitions */
+            width: 100%; /* Make sure sections take full width */
+            height: 100%; /* Full height */
+            top: 0; /* Align to top */
+            left: 0; /* Align to left */
+            opacity: 0; /* Start hidden */
+            transition: opacity 0.3s ease, visibility 0s linear 0.3s; /* Smooth transition for opacity */
+            
+            
+        }
+
+        /* Make the section visible */
+        .show {
+            display: block;
+            opacity: 1;
+            
+            
+            
+        }
+            /* Styling for toggle */
+        .toggle-container {
+            position: absolute;
+            bottom: 50px;
+            right: 120px;
+            z-index: 1000;
+            justify-content: center;
+            display: flex;
+    flex-direction: column;
+    align-items: center; /* This centers both the toggle and text */
+            
+       }
+
+        /* Styling the toggle switch */
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 60px;
+            height: 34px;
+        }
+
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #D9D9D9;
+            transition: 0.4s;
+            border-radius: 34px;
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 26px;
+            width: 26px;
+            left: 4px;
+            bottom: 4px;
+            background-color: #84B78F;
+            transition: 0.4s;
+            border-radius: 50%;
+        }
+
+        input:checked + .slider {
+            background-color: #D9D9D9;
+            
+        }
+
+        input:checked + .slider:before {
+            transform: translateX(26px);
+            background-color: #E5887A;
+        }
+
+        .toggle-text {
+            margin-top: 10px; /* Add space between the toggle and text */
+            text-align: center;
+            font-family: 'Afacad', sans-serif;
+            font-size: 18px; /* Adjust font size as per need */
+            color: #333; /* Set the text color */
+        }
+
+        /* Add this to the elements you're switching between */
+.about-me-1-section,
+.about-me-2-section {
+    transition: all 0.5s ease; /* Adjust timing and easing function */
+    position: absolute; /* Ensure content overlaps smoothly */
+    top: 0; /* Adjust as needed */
+    left: 0;
+    width: 100%; /* Cover entire container */
+    height: 100%;
+    opacity: 0; /* Hide initially */
+    transform: translateY(20px); /* Add some slight movement */
+    visibility: hidden; /* Ensures the content isn't interactive */
+}
+
+/* When active, apply visibility and bring content into view */
+.active {
+    opacity: 1;
+    transform: translateY(0); /* Moves back into position */
+    visibility: visible;
+}
+
+/* Optional: Make the switch itself smoother */
+.toggle-switch {
+    transition: all 0.3s ease-in-out;
+}
+.question {
+            border-top: 2px solid #FF4500; /* Top border */
+            border-bottom: 2px solid transparent; /* Default bottom border for first 5 boxes */
+            cursor: pointer;
+            width: 50%; /* Set width to half */
+            margin: 0; /* No space between boxes */
+        }
+
+        .question:last-of-type {
+            border-bottom: 2px solid #FF4500; /* Bottom border for the last box */
+        }
+
+        .question p {
+            margin: 0;
+            padding: 15px; /* Padding for the question text */
+            display: flex; /* Flexbox for alignment */
+            justify-content: space-between; /* Space between text and icon */
+            align-items: center; /* Center vertically */
+            font-size: 24px; /* Font size for question */
+            font-family: 'Calistoga', sans-serif; /* Use Calistoga for the question */
+        }
+
+        .answer-content {
+            font-size: 24px; /* Set font size for the answer */
+            font-family: 'Afaacad', sans-serif; /* Use Afaacad for the answer */
+            color: #FF4500;
+            padding: 10px 15px; /* Padding for the answer */
+            max-height: 0; /* Hidden by default */
+            overflow: hidden; /* Prevent overflow */
+            transition: max-height 0.3s ease; /* Smooth transition */
+        }
+
+        .question.expanded .answer-content {
+            max-height: 500px; /* Enough height to fully show answer */
+        }
+
+        .plus {
+            font-size: 24px;
+            transition: transform 0.2s ease; /* Smooth rotation for icon */
+        }
+
+        .question.expanded .plus {
+            transform: rotate(45deg); /* Rotate plus icon when expanded */
+        }
+        .footer {
+            
+            text-align: center;
+            padding: 20px 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Calistoga', serif;
+            font-size: 24px;
+            color: #2D3C73; /* Dark blue text */
+            bottom: auto;
+            z-index: 1000;
+            margin-top: 850px;
+            
+        }
+
+        .footer a {
+            text-decoration: none;
+            color: #2D3C73; /* Dark blue text */
+            font-size: 24px;
+            
+            margin-right: 15px; /* Space between text and icons */
+            font-family: 'Calistoga', serif;
+            z-index: 1000;
+        }
+
+        .footer-icons {
+            display: flex;
+            align-items: center;
+            z-index: 1000;
+            margin-top: 850px;
+        }
+
+        .footer-icons a {
+            margin: 0 5px;
+            text-decoration: none;
+            z-index: 1000;
+        }
+
+        .footer-icons img {
+            width: 34px; /* Adjust icon size */
+            height: 34px;
+            z-index: 1000;
+        }
+        #section1 {background-color: rgb(255, 251, 244);}
+    </style>
+</head>
+<body>  
+    <header class="afacad-light" style="color:#2D3B66; font-size: 24px;"> 
+        <nav class="navbar">
+            <a href="Non-res_home.html">
+                <div class="logo" >
+                    <img src="logo.png" width="40px" style="margin-left: 50px;">
+                </div>
+            </a>
+            <ul class="nav-links" style="margin-right: 80px;">
+                <li><a href="Non-res_home.html">Projects</a></li>
+                <li><a href="#">About me</a></li>
+                <li><a href="#">Contact</a></li>
+                <li><a href="#">Gallery</a></li>
+                
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </nav>
+    </header>
+
+
+
+    <section id="about-me-1" class="about-section show">
+    <section class="image-container">
+        <div class="image-overlap">
+            <img src="Vector93green.png" alt="Image 1" class="image-1" style="min-height: 300px; max-height: 400px;">
+            <img src="Rectangle33green.png" alt="Image 2" class="image-2" style="min-height: 600px;">
+            <img src="Vector95.png" alt="Image 3" class="image-3" style="max-height: 400px;">
+        <div class="overlay-text" >
+            <div class="calistoga-regular" style="color: #2D3B66; letter-spacing: 15px; -webkit-text-stroke: 43px; -webkit-text-stroke-color: rgb(255, 251, 244); paint-order: stroke fill; margin-left: 10px;">
+                About me</div>
+        </div>
+        </div>
+        <img src="aboutme1girl.png" alt="Image 4" class="image-4" style="max-height: 550px; width: auto; margin-left: 470px;">
+        <img src="flower.svg" alt="Rotating Image" class="rotating-image" style="margin-left: 640px;">
+        <img src="Vector97green.svg" alt="Image 5" class="image-5" style="min-height:100px; max-height: 400px;">
+        <div class="overlay-text">
+        </section>
+            <section class="image-container2">
+                <div class="image-overlap2">
+                    <div class="calistoga-regular" style="color: #2D3B66; text-align:left; margin-left: 80px; font-size: 64px;margin-top: 730px;">
+                        <p>Education</p>
+                        <p class="text-block1" style="font-size:24px;width:auto ;margin-right: 80px; padding-top: 30px;">
+                            PES University <b>(2022-2026)</b><br>
+                            Bachelors in Design
+                        </p>
+                    </div>
+                    <div class="calistoga-regular" style="color: #2D3B66; text-align:left; margin-left: 80px; font-size: 64px; margin-top: 30px;">
+                        <p>Experience</p>
+                        <p class="text-block1" style="font-size:24px;width:auto ;margin-right: 80px; padding-top: 30px;">
+                            Core design member for AURA (AIML Club): <b>2023-Current</b><br>
+                            Freelance designer for a kid’s art app: <b>July 2024-Current</b>
+                        </p>
+                    </div>
+                    
+                    <div class="container2" style="margin-top: 50px;">
+                        <div class="box box1">
+                            <div class="content">
+                                <h2 class="title1">Software skills</h2>
+                                <div class="hover-text1">
+                                    <img src="software.svg" style="width: 500px; height:280; margin-top: 20px; margin-left: 20px;" > </div>
+                            </div>
+                        </div>
+                        <div class="box box1">
+                            <div class="content">
+                                <h2 class="title1">Soft skills</h2>
+                                <div class="hover-text1">
+                                    <img src="softskills.svg" style="width: 500px; height:280; margin-top: 20px; margin-left: 20px;" > </div>
+                            </div>
+                        </div>
+                        
+                </section>
+            </section>
+
+
+            <section id="about-me-2" class="about-section">
+                <section class="image-container">
+                    <div class="image-overlap">
+                        <img src="Vector93pink.png" alt="Image 1" class="image-1" style="min-height: 300px; max-height: 400px;">
+                        <img src="Rectangle33pink.png" alt="Image 2" class="image-2" style="min-height: 600px;">
+                        <img src="Vector95.png" alt="Image 3" class="image-3" style="max-height: 400px;">
+                    <div class="overlay-text" >
+                        <div class="calistoga-regular" style="color: #2D3B66; letter-spacing: 15px; -webkit-text-stroke: 43px; -webkit-text-stroke-color: rgb(255, 251, 244); paint-order: stroke fill; margin-left: 10px;">
+                        The other me</div>
+                    </div>
+                    </div>
+                    <img src="theothermegirl.png" alt="Image 4" class="image-4" style="max-height: 550px; width: auto; margin-left: 470px;">
+                    <img src="flower.svg" alt="Rotating Image" class="rotating-image" style="margin-left: 640px;">
+                    <img src="Vector97pink.svg" alt="Image 5" class="image-5" style="min-height:100px; max-height: 400px;">
+                    <div class="overlay-text">
+                        </div>
+                </section>
+
+                <section class="image-container2">
+                    <div class="image-overlap2">
+                        <div class="calistoga-regular" style="color: #2D3B66; text-align:left; margin-left: 80px; font-size: 64px;margin-top: 730px;">
+                            <p>Education</p>
+                            <p class="text-block1" style="font-size:24px;width:auto ;margin-right: 80px; padding-top: 30px;">
+                                PES University <b>(2022-2026)</b><br>
+                                Bachelors in Design
+                            
+                </section>
+                
+            </section>
+
+
+            <!-- Toggle switch -->
+    <div class="toggle-container" >
+        
+        <label class="switch">
+            <input type="checkbox" id="about-toggle">
+            <span class="slider"></span>
+        </label>
+        <p class="toggle-text">Click to see <br>the other me!</p>
+    </div>
+    
+    <div class="footer">
+        <div class="footer a">
+        Still here? Let's&nbsp;&nbsp; <a href="#">connect</a></div>
+        <div class="footer-icons">
+            <a href="https://www.behance.net/ae80d506"><img src="behanceorange.svg" alt="Behance"></a>
+            <a href="https://www.instagram.com/deepikaa_22/"><img src="insta.svg" alt="Instagram"></a>
+            <a href="https://www.linkedin.com/in/deepikaa-varadharajan-41bb07220/"><img src="linkedin.svg" alt="Linkedin"></a>
+        </div>
+    </div>
+
+            
+    <script>
+        const hamburger = document.querySelector('.hamburger');
+        const navLinks = document.querySelector('.nav-links');
+
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('nav-active');
+        });
+    </script>
+
+<script>
+    // JavaScript to toggle between the two sections
+    const toggleSwitch = document.getElementById('about-toggle');
+    const aboutMe1 = document.getElementById('about-me-1');
+    const aboutMe2 = document.getElementById('about-me-2');
+
+    toggleSwitch.addEventListener('change', function() {
+        if (toggleSwitch.checked) {
+            aboutMe1.classList.remove('show'); // Hide section
+            setTimeout(() => {
+                aboutMe2.classList.add('show'); // Show the next section
+            }, 100); // Wait for fade out to complete
+        } else {
+            aboutMe2.classList.remove('show'); // Hide section
+            setTimeout(() => {
+                aboutMe1.classList.add('show'); // Show the previous section
+            }, 100); // Wait for fade out to complete
+        }
+    });
+</script>
+
+
+
+     
+</body>
+</html>
