@@ -1,0 +1,813 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Afacad:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Calistoga&display=swap" rel="stylesheet">
+    <style>
+        /* Basic Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        .afacad-light {
+                font-family: "Afacad", sans-serif;
+                font-optical-sizing: auto;
+                font-weight: 400;
+                }
+                .afacad-bold {
+                font-family: "Afacad", sans-serif;
+                font-optical-sizing: auto;
+                font-weight: 700;
+                }
+        body {
+                    background-color: rgb(255, 251, 244);
+                    
+                    margin-top: 20px;
+                }
+        .calistoga-regular {
+                font-family: "Calistoga", serif;
+                font-weight: 400;
+                font-style: normal;
+                }
+
+                html {
+        scroll-behavior: smooth;
+    }
+        header {
+            background-color: rgb(255, 251, 244);
+            padding: 10px 20px;
+            position: fixed; /* Make the navbar stay on top */
+            top: 0;
+            width:100%;
+            z-index: 1000; 
+            
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo img {
+            width: 40px; /* Adjust logo size */
+            height: auto;
+            padding-top: 10px;
+            margin-left: 40px;
+        }
+
+        .nav-links {
+            
+            list-style: none;
+            display: flex;
+        }
+
+        .nav-links li {
+            margin-left: 30px;
+            
+        }
+
+        .nav-links a {
+            color: #2D3B66;
+            text-decoration: none;
+            font-size: 1rem;
+            transition: color 0.15s ease;
+        }
+
+        .nav-links a:hover {
+            color: #E5887A;
+            font-weight: 700;
+        }
+
+        /* Hamburger Menu */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        .hamburger .bar {
+            width: 25px;
+            height: 4px;
+            background-color: #2D3B66;
+            border-radius: 5px;
+            margin: 3px;
+            transition: all 0.15s ease;
+            
+        }
+
+        /* Responsive Styling */
+        @media (max-width: 768px) {
+            .nav-links {
+                position: absolute;
+                right: -80px;
+                top: 70px;
+                height: 90vh;
+                width: 100%;
+                
+                background-color: rgb(255,252,244);
+                flex-direction: column;
+                align-items: center;
+                justify-content: space-around;
+                transform: translateX(100%);
+                transition: transform 0.3s ease-in;
+            }
+
+            .nav-links li {
+                margin: 20px 0;
+            }
+
+            .hamburger {
+                display: flex;
+                margin-right: 30px;
+            }
+
+            .nav-active {
+                transform: translateX(0);
+            }
+        }
+
+         /* Responsive Image Overlap Container */
+        .image-container {
+            width: 100%;
+            margin: 50px auto;
+            display: flex;
+        }
+
+        .image-overlap {
+            position: relative; /* Relative positioning to contain absolute images */
+            width: 100%;
+            height: auto;
+        }
+
+        .image-1 {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%; /* Full width, will scale with container */
+            height: auto;
+            z-index: 2; /* This will be above the second image */
+        }
+
+        /* Second Image */
+        .image-2 {
+            position: absolute;
+            top: 20px; /* Adjust the amount of overlap */
+            width: 100%; /* Make the second image a bit smaller */
+            height: 650px;
+            z-index: 1; 
+            
+        }
+        .image-3 {
+            position: absolute;
+            top: 20px; /* Adjust the amount of overlap */
+            width: 100%; /* Make the second image a bit smaller */
+            height: 450px;
+            margin-top: 280px;
+            z-index: 3; 
+            
+        }
+
+        .image-4 {
+            position: absolute;
+            top: 20px; /* Adjust the amount of overlap */
+            width: 100%; /* Make the second image a bit smaller */
+            height: 650px;
+            margin-top: 150px;
+            z-index: 5; 
+            
+        }
+
+        .image-5 {
+            position: absolute;
+            top: 20px; /* Adjust the amount of overlap */
+            width: 100%; /* Make the second image a bit smaller */
+            
+            margin-top: 680px;
+            z-index: 6; 
+            
+        }
+        
+                @keyframes rotate {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+            /* Image styling */
+            .rotating-image {
+                position: absolute;
+                width: 70px; /* Adjust the size as needed */
+                height: auto;
+                margin-top: 210px;
+                z-index: 9;
+                animation: rotate 5s linear infinite; /* Continuous rotation */
+            }
+
+                 
+
+        .overlay-text {
+            position: absolute;
+            top: 50px;
+            z-index: 4;
+            color: white; /* Text color */
+            text-align: center; /* Center-align the text */
+            width: 100%; /* Adjust width */
+            font-size:  170px;
+        }
+
+        .overlay-text p {
+            font-size: 64px;
+            
+        }
+
+    
+        
+
+                    /* Container for the text and button */
+            .content-container {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                gap: 140px;
+                margin-left: 80px;
+                margin-right: 250px;
+                
+            }
+
+            /* Text Block Styling */
+            .text-block {
+                font-family: 'Afacad', sans-serif; /* Apply Afacad font to the text block */
+                font-size: 24px;
+                line-height: 1.6;
+                color: #4c4c4c;
+                flex: 3;
+                
+            }
+            /* Text Block Styling */
+            .text-block1 {
+                font-family: 'Afacad', sans-serif; /* Apply Afacad font to the text block */
+                font-size: 24px;
+                line-height: 1.6;
+                color: #4c4c4c;
+                flex: 3;
+                
+            }
+            /* Button Styling */
+            .styled-button {
+                background-color: #D3F2D1; /* Button background */
+                color: #4c4c4c; /* Button text color */
+                padding: 15px 30px;
+                font-size: 24px;
+                border: none;
+                border-radius: 10px;
+                box-shadow: 7px 7px 0px#84B78F; /* Shadow effect */
+                cursor: pointer;
+                
+                text-align: center;
+                font-family: 'Afacad', sans-serif;
+                width: 170px; /* Fixed width */
+                height: 80px;
+            }
+
+            .styled-button:hover {
+                transform: translateY(-6px); /* Hover effect */
+                transition: transform 0.1s ease-in-out;
+                font-weight: 700;
+                background-color: #D3F2D1;
+                color: #4c4c4c;
+                border-radius: 10px;
+                box-shadow: 7px 7px 0px #84B78F; /* Shadow effect */
+                font-weight: 700;
+
+            }
+            .styled-button {
+                transition: ease-in-out;}
+
+              /* Responsive Image Overlap Container */
+        .image-container1 {
+            width: 100%;
+            margin: 50px auto;
+            display: flex;
+        }
+        .image-overlap1 {
+            position: relative; /* Relative positioning to contain absolute images */
+            width: 100%;
+            height: auto;
+        }
+            .rotating-element1  {
+            position: absolute;
+            margin-top: 10px;
+            width: 70px;
+            height: 70px;
+            animation: spin 5s linear infinite;
+            transform-origin: center center; /* Make sure it rotates on its center */
+            display: block; /* Avoid any inline behavior that could affect rotation */
+            z-index: 1;
+            }
+
+            @keyframes spin {
+            0% {
+                transform: rotate(0deg); /* Start at 0 degrees */
+            }
+            100% {
+                transform: rotate(360deg); /* End at 360 degrees */
+            }
+        }
+
+                .container {
+            display: flex; /* Use flexbox to create a responsive layout */
+            flex-wrap: wrap; /* Allow items to wrap to the next line */
+            gap: 40px; /* Add space between boxes */
+            width: 100%;
+            justify-content: center;
+            z-index: 2;
+            
+        }
+
+        
+
+
+.box1 {
+    position: relative; /* For absolute positioning of hover text */
+    background-color: #e0eaff; /* Default background color */
+    padding-left: 60px;
+    padding-right: 60px;
+    text-align: left; /* Align text to the left */
+    text-decoration: none; /* Remove underline from links */
+    color: #333; /* Text color */
+    overflow: hidden; /* Prevent overflow for hover text */
+    transition: background-color 0.4s ease; /* Smooth transition */
+    border-radius: 30px; /* Rounded corners */
+    width: 750px;
+    height: 320px;
+    font-family: 'Afacad', sans-serif;
+    font-size: 32px;
+    box-shadow: 7px 7px 0px #2D3B66;
+            
+        
+}
+
+.box2{
+    position: relative; /* For absolute positioning of hover text */
+    background-color: #FEC8C0; /* Default background color */
+    padding-left: 60px;
+    padding-right: 60px;
+    text-align: left; /* Align text to the left */
+    text-decoration: none; /* Remove underline from links */
+    color: #333; /* Text color */
+    overflow: hidden; /* Prevent overflow for hover text */
+    transition: background-color 0.4s ease; /* Smooth transition */
+    border-radius: 30px; /* Rounded corners */
+    width: 420px;
+    height: 320px;
+    font-family: 'Afacad', sans-serif;
+    font-size: 32px;
+    box-shadow: 7px 7px 0px #F84C35;
+            
+        
+}
+
+.box3 {
+    position: relative; /* For absolute positioning of hover text */
+    background-color: #FEC8C0; /* Default background color */
+    padding-left: 60px;
+    padding-right: 60px;
+    text-align: left; /* Align text to the left */
+    text-decoration: none; /* Remove underline from links */
+    color: #333; /* Text color */
+    overflow: hidden; /* Prevent overflow for hover text */
+    transition: background-color 0.4s ease; /* Smooth transition */
+    border-radius: 30px; /* Rounded corners */
+    width: 420px;
+    height: 320px;
+    font-family: 'Afacad', sans-serif;
+    font-size: 32px;
+    box-shadow: 7px 7px 0px #F84C35;
+            
+        
+}
+
+.box4 {
+    position: relative; /* For absolute positioning of hover text */
+    background-color: #e0eaff; /* Default background color */
+    padding-left: 60px;
+    padding-right: 60px;
+    text-align: left; /* Align text to the left */
+    text-decoration: none; /* Remove underline from links */
+    color: #333; /* Text color */
+    overflow: hidden; /* Prevent overflow for hover text */
+    transition: background-color 0.4s ease; /* Smooth transition */
+    border-radius: 30px; /* Rounded corners */
+    width: 750px;
+    height: 320px;
+    font-family: 'Afacad', sans-serif;
+    font-size: 32px;
+    box-shadow: 7px 7px 0px #2D3B66;
+            
+        
+}
+
+.box1:hover {
+    background-color: #b8c8eb; /* Change color on hover */
+}
+
+.content {
+    position: relative; /* Allow for absolute positioning of hover text within this div */
+}
+
+.title1 {
+    margin: 0; /* Remove default margin */
+    padding-top: 220px;
+    transition: transform 0.4s ease-in-out; /* Add ease-in-out for smoothness */
+}
+
+.hover-text1 {
+    position: absolute; /* Positioning for hover text */
+    bottom: -340px; /* Start below the box */
+    left: 0; /* Align to the left */
+    transition: bottom 0.3s ease-in-out, opacity 0.3s ease-in-out; /* Smooth transition for movement */
+    opacity: 0; /* Initially transparent */
+
+}
+
+.box1:hover .hover-text1 {
+    bottom:40px; /* Move text into view */
+    opacity: 1; /* Fade in */
+}
+
+.box1:hover .title1 {
+    transform: translateY(-140px); /* Move title up when hovering */
+}
+
+.box1 .hover-text1, .box1 .title1 {
+    transition: all 0.4s ease-in-out; /* Smooth animation on both hover-in and hover-out */
+}
+
+
+
+        .box2:hover {
+    background-color: #fbb4aa; /* Change color on hover */
+}
+
+.content {
+    position: relative; /* Allow for absolute positioning of hover text within this div */
+}
+
+.title2 {
+    margin: 0; /* Remove default margin */
+    padding-top: 220px;
+    transition: transform 0.4s ease-in-out; /* Add ease-in-out for smoothness */
+}
+
+.hover-text2 {
+    position: absolute; /* Positioning for hover text */
+    bottom: -340px; /* Start below the box */
+    left: 0; /* Align to the left */
+    transition: bottom 0.3s ease-in-out, opacity 0.3s ease-in-out; /* Smooth transition for movement */
+    opacity: 0; /* Initially transparent */
+
+}
+
+.box2:hover .hover-text2 {
+    bottom:40px; /* Move text into view */
+    opacity: 1; /* Fade in */
+}
+
+.box2:hover .title2 {
+    transform: translateY(-140px); /* Move title up when hovering */
+}
+
+.box2.hover-text2, .box2 .title2 {
+    transition: all 0.4s ease-in-out; /* Smooth animation on both hover-in and hover-out */
+}
+
+
+
+        .box3:hover {
+    background-color: #fbb4aa; /* Change color on hover */
+}
+
+.content {
+    position: relative; /* Allow for absolute positioning of hover text within this div */
+}
+
+.title3{
+    margin: 0; /* Remove default margin */
+    padding-top: 220px;
+    transition: transform 0.4s ease-in-out; /* Add ease-in-out for smoothness */
+}
+
+.hover-text3 {
+    position: absolute; /* Positioning for hover text */
+    bottom: -340px; /* Start below the box */
+    left: 0; /* Align to the left */
+    transition: bottom 0.3s ease-in-out, opacity 0.3s ease-in-out; /* Smooth transition for movement */
+    opacity: 0; /* Initially transparent */
+
+}
+
+.box3:hover .hover-text3 {
+    bottom:40px; /* Move text into view */
+    opacity: 1; /* Fade in */
+}
+
+.box3:hover .title3{
+    transform: translateY(-140px); /* Move title up when hovering */
+}
+
+.box3 .hover-text3, .box3 .title3 {
+    transition: all 0.4s ease-in-out; /* Smooth animation on both hover-in and hover-out */
+}
+
+
+
+        .box4:hover {
+    background-color: #b8c8eb; /* Change color on hover */
+}
+
+.content {
+    position: relative; /* Allow for absolute positioning of hover text within this div */
+}
+
+.title4 {
+    margin: 0; /* Remove default margin */
+    padding-top: 220px;
+    transition: transform 0.4s ease-in-out; /* Add ease-in-out for smoothness */
+}
+
+.hover-text4{
+    position: absolute; /* Positioning for hover text */
+    bottom: -340px; /* Start below the box */
+    left: 0; /* Align to the left */
+    transition: bottom 0.3s ease-in-out, opacity 0.3s ease-in-out; /* Smooth transition for movement */
+    opacity: 0; /* Initially transparent */
+
+}
+
+.box4:hover .hover-text4 {
+    bottom:40px; /* Move text into view */
+    opacity: 1; /* Fade in */
+}
+
+.box4:hover .title4 {
+    transform: translateY(-140px); /* Move title up when hovering */
+}
+
+.box4 .hover-text4, .box4 .title1 {
+    transition: all 0.4s ease-in-out; /* Smooth animation on both hover-in and hover-out */
+}
+
+.footer {
+            
+            text-align: center;
+            padding: 20px 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Calistoga', serif;
+            font-size: 24px;
+            color: #2D3C73; /* Dark blue text */
+            
+        }
+
+        .footer a {
+            text-decoration: none;
+            color: #2D3C73; /* Dark blue text */
+            font-size: 24px;
+            
+            margin-right: 15px; /* Space between text and icons */
+            font-family: 'Calistoga', serif;
+        }
+
+        .footer-icons {
+            display: flex;
+            align-items: center;
+        }
+
+        .footer-icons a {
+            margin: 0 5px;
+            text-decoration: none;
+        }
+
+        .footer-icons img {
+            width: 34px; /* Adjust icon size */
+            height: 34px;
+        }
+
+        .spacer {
+        height: 690px; /* Adjust the height as needed */
+    }
+    .nameforme {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 30vh; /* Full viewport height */
+      overflow: hidden; /* Hide overflow to avoid visual glitches */
+    }
+
+    /* Only apply these styles to images with the fade-img class */
+    .fade-img {
+      height: auto;
+      opacity: 0;
+      transition: opacity 1s ease, transform 1s ease;
+    }
+
+    /* Initial styles for the first image (from the left) */
+    .fade-img.left {
+      transform: translateX(-600px) scale(0.5); /* Start off-screen to the left and zoomed out */
+    }
+
+    /* Initial styles for the second image (from the right) */
+    .fade-img.right {
+      transform: translateX(600px) scale(0.5); /* Start off-screen to the right and zoomed out */
+    }
+
+    .fade-img.active {
+      opacity: 1;
+      transform: translateX(0) scale(1); /* Move to the center and zoom in */
+    }
+
+    .fade-img.fade-out {
+      opacity: 0;
+      transform: translateX(600px) scale(0.5); /* Move off-screen to the right and zoom out */
+    }
+
+    /* Fade out for the first image */
+    .fade-img.fade-out.left {
+      transform: translateX(-600px) scale(0.5); /* Move off-screen to the left */
+    }
+    
+        #section1 {background-color: rgb(255, 251, 244);}
+    </style>
+</head>
+<body>  
+    <header class="afacad-light" style="color:#2D3B66; font-size: 24px;"> 
+        <nav class="navbar">
+            <a href="index.html">
+            <div class="logo" >
+                <img src="logo.png" width="40px" style="margin-left: 70px;">
+            </div>
+        </a>
+            <ul class="nav-links" style="margin-right: 80px;">
+                <li><a href="#section1">Projects</a></li>
+                <li><a href="about_me_final.html">About me</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="gallery.html">Gallery</a></li>
+                
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </nav>
+    </header>
+
+
+
+
+    <section class="image-container">
+        <div class="image-overlap">
+        <img src="Vector93.png" alt="Image 1" class="image-1" style="min-height: 300px; max-height: 400px;">
+        <img src="Rectangle33.png" alt="Image 2" class="image-2" style="min-height: 600px;">
+        <img src="Vector95.png" alt="Image 3" class="image-3" style="max-height: 400px;">
+        <div class="overlay-text" >
+            <div class="calistoga-regular" style="color: #2D3B66; letter-spacing: 15px; -webkit-text-stroke: 43px; -webkit-text-stroke-color: rgb(255, 251, 244); paint-order: stroke fill; margin-left: 10px;">
+                PORTFOLIO</div>
+        </div>
+        </div>
+        <img src="mainhomegirl.png" alt="Image 4" class="image-4" style="max-height: 550px; width: auto; margin-left: 470px; ">
+        <img src="flower.svg" alt="Rotating Image" class="rotating-image" style="margin-left: 640px;">
+        <img src="Vector97.png" alt="Image 5" class="image-5" style="min-height:100px; max-height: 400px;">
+        
+        
+
+    </section>
+</div>
+<div class="spacer"></div>
+
+<div class="nameforme">
+    <img src="Hiim.svg" style="width: 400px;" class="fade-img left"> <!-- First image coming from the left -->
+  </div>
+
+  <div class="nameforme">
+    <img src="deepikaa.svg" style="width: 1400px;" class="fade-img right"> <!-- Second image coming from the right -->
+  </div>
+
+
+    <div class="content-container" style="margin-top: 80px;margin-left: 170px; margin-right: 170px;">
+        <p class="text-block">
+         A UI/UX and graphic designer who (at least tries to) create visually appealing, user-friendly designs that balance aesthetics and functionality. My goal is to enhance usability while ensuring the design supports both the user and brand objectives.
+        </p>
+        
+    </div>
+    <section id="section1">
+    <div class="calistoga-regular" style="color: #2D3B66; text-align: left; margin-left: 170px; font-size: 64px; padding-top: 60px;">
+        <p>A glimpse of my work</p>
+    
+        <p class="text-block1" style="margin-right: 170px; padding-top: 40px;">
+            I’ve had the chance to work on a variety of design projects, each with its own unique challenge (and a few curveballs, of course!). From crafting sleek, user-friendly interfaces to whipping up visuals to creating products, I've put my hands in all fields of design. It’s all about balancing aesthetics with functionality—because let’s face it, pretty designs that don’t work aren’t exactly winning any hearts!
+        </p></div>
+        
+
+        <section class="image-container1" style="padding-bottom: 80px;">
+            <div class="image-overlap">
+            <div class="rotating-element1" style="margin-left: 180px; ">
+                <img src="flower.svg" alt="Rotating Element">
+            </div>
+            <div class="rotating-element1" style="margin-left: 1270px; ">
+                <img src="flower.svg" alt="Rotating Element">
+            </div>
+        <div class="calistoga-regular" style="color: #2D3B66; text-align:center;  font-size: 64px;    ">
+            <p>Some projects you should explore</p>
+            <div class="container" style="margin-top: 50px;">
+                <a href="#" class="box box1">
+                    <div class="content">
+                        <h2 class="title1">Geometry for the blind</h2>
+                        <div class="hover-text1">A Geometry box was modified to make it more easy and beneficial for the user!  </div>
+                    </div>
+                </a>
+                <a href="#" class="box box2">
+                    <div class="content">
+                        <h2 class="title2">Fuzzy Friends</h2>
+                        <div class="hover-text2">A cute mobile game filled with cats! </div>
+                    </div>
+                </a>
+                <a href="#" class="box box3">
+                    <div class="content">
+                        <h2 class="title3">Niyati</h2>
+                        <div class="hover-text3">Skincare re-defined for you!</div>
+                    </div>
+                </a>
+                <a href="#" class="box box4">
+                    <div class="content">
+                        <h2 class="title4">Prime Video: Usability testing</h2>
+                        <div class="hover-text4">A case study on the popular streaming website Amazon Prime Video!  </div>
+                    </div>
+                </a>               
+                
+            </div>
+        </div>
+        </section>
+    </section>
+        <div class="footer">
+            <div class="footer a">
+            Still here? Let's&nbsp;&nbsp; <a href="#">connect</a></div>
+            <div class="footer-icons">
+                <a href="https://www.behance.net/ae80d506"><img src="behanceorange.svg" alt="Behance"></a>
+                <a href="https://www.instagram.com/deepikaa_22/"><img src="insta.svg" alt="Instagram"></a>
+                <a href="https://www.linkedin.com/in/deepikaa-varadharajan-41bb07220/"><img src="linkedin.svg" alt="Linkedin"></a>
+            </div>
+        </div>
+        
+        
+
+
+    <script>
+        const hamburger = document.querySelector('.hamburger');
+        const navLinks = document.querySelector('.nav-links');
+
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('nav-active');
+        });
+
+        
+    </script>
+    <script>
+        // IntersectionObserver to detect when the images come into view or out of view
+        document.addEventListener("DOMContentLoaded", () => {
+          const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add("active"); // Add active class when image is in view
+                entry.target.classList.remove("fade-out"); // Remove fade-out class
+              } else {
+                entry.target.classList.add("fade-out"); // Add fade-out class when out of view
+                entry.target.classList.remove("active"); // Remove active class
+              }
+            });
+          });
+    
+          const images = document.querySelectorAll(".fade-img");
+          images.forEach(image => {
+            observer.observe(image);
+          });
+        });
+      </script>
+    
+    
+     
+</body>
+</html>

@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Afacad:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Calistoga&display=swap" rel="stylesheet">
+    <style>
+        /* Basic Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        .afacad-light {
+                font-family: "Afacad", sans-serif;
+                font-optical-sizing: auto;
+                font-weight: 400;
+                }
+                .afacad-bold {
+                font-family: "Afacad", sans-serif;
+                font-optical-sizing: auto;
+                font-weight: 700;
+                }
+        body {
+                    background-color: rgb(255, 251, 244);
+                    
+                    margin-top: 20px;
+                }
+        .calistoga-regular {
+                font-family: "Calistoga", serif;
+                font-weight: 400;
+                font-style: normal;
+                }
+
+
+        header {
+            background-color: rgb(255, 251, 244);
+            padding: 10px 20px;
+            position: fixed; /* Make the navbar stay on top */
+            top: 0;
+            width:100%;
+            z-index: 1000; 
+            
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo img {
+            width: 40px; /* Adjust logo size */
+            height: auto;
+            padding-top: 10px;
+            margin-left: 40px;
+        }
+
+        .nav-links {
+            
+            list-style: none;
+            display: flex;
+        }
+
+        .nav-links li {
+            margin-left: 30px;
+            
+        }
+
+        .nav-links a {
+            color: #2D3B66;
+            text-decoration: none;
+            font-size: 1rem;
+            transition: color 0.15s ease;
+        }
+
+        .nav-links a:hover {
+            color: #E5887A;
+            font-weight: 700;
+        }
+
+        /* Hamburger Menu */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        .hamburger .bar {
+            width: 25px;
+            height: 4px;
+            background-color: #2D3B66;
+            border-radius: 5px;
+            margin: 3px;
+            transition: all 0.15s ease;
+            
+        }
+
+        /* Responsive Styling */
+        @media (max-width: 768px) {
+            .nav-links {
+                position: absolute;
+                right: -80px;
+                top: 70px;
+                height: 90vh;
+                width: 100%;
+                
+                background-color: rgb(255,252,244);
+                flex-direction: column;
+                align-items: center;
+                justify-content: space-around;
+                transform: translateX(100%);
+                transition: transform 0.3s ease-in;
+            }
+
+            .nav-links li {
+                margin: 20px 0;
+            }
+
+            .hamburger {
+                display: flex;
+                margin-right: 30px;
+            }
+
+            .nav-active {
+                transform: translateX(0);
+            }
+        }
+
+         /* Responsive Image Overlap Container */
+        .image-container {
+            width: 100%;
+            margin: 50px auto;
+        }
+
+        .image-overlap {
+            position: relative; /* Relative positioning to contain absolute images */
+            width: 100%;
+            height: auto;
+        }
+
+        .image-1 {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%; /* Full width, will scale with container */
+            height: auto;
+            z-index: 2; /* This will be above the second image */
+        }
+
+        /* Second Image */
+        .image-2 {
+            position: absolute;
+            top: 20px; /* Adjust the amount of overlap */
+            width: 100%; /* Make the second image a bit smaller */
+            height: 650px;
+            z-index: 1; 
+            
+        }
+        .image-3 {
+            position: absolute;
+            top: 20px; /* Adjust the amount of overlap */
+            width: 100%; /* Make the second image a bit smaller */
+            height: 450px;
+            margin-top: 280px;
+            z-index: 3; 
+            
+        }
+
+        .image-4 {
+            position: absolute;
+            top: 20px; /* Adjust the amount of overlap */
+            width: 100%; /* Make the second image a bit smaller */
+            height: 650px;
+            margin-top: 200px;
+            z-index: 5; 
+            
+        }
+
+        .image-5 {
+            position: absolute;
+            top: 20px; /* Adjust the amount of overlap */
+            width: 100%; /* Make the second image a bit smaller */
+            
+            margin-top: 680px;
+            z-index: 6; 
+            
+        }
+        
+
+        .overlay-text {
+            position: absolute;
+            top: 50px;
+            z-index: 4; /* On top of both images */
+            color: white; /* Text color */
+            text-align: center; /* Center-align the text */
+            width: 100%; /* Adjust width */
+            font-size:  7rem;
+        }
+
+        .overlay-text p {
+            font-size: 4rem;
+            
+        }
+
+        .overlay-text p1 {
+            font-size: 2rem;
+        
+        }
+
+
+        @media (max-width: 768px) {
+            .overlay-text {
+                top: 100px;
+
+                font-size: 3rem;
+            }
+
+            .overlay-text p {
+                top:700px;
+                font-size: 2rem;
+            }
+
+            .overlay-text p1 {
+            font-size: 1rem;
+            
+        }
+        }
+        .styled-button {
+            background-color: #D3F2D1; /* Light green */
+            color: #4c4c4c; /* Text color */
+            padding: 15px 30px;
+            font-size: 1.2rem;
+            border: none;
+            border-radius: 10px;
+            box-shadow: 5px 5px 0px #84B78F; /* Shadow effect */
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .styled-button:hover {
+            transform: translateY(-3px); /* Hover effect (slight lift) */
+        }
+
+
+    </style>
+</head>
+<body>  
+    <header class="afacad-light" style="color:#2D3B66; font-size: 24px;"> 
+        <nav class="navbar">
+            <div class="logo">
+                <img src="C:\Users\LENOVO\Desktop\HTML\Portfolio\logo.png" width="40px" style="margin-left: 50px;">
+            </div>
+            <ul class="nav-links" style="margin-right: 80px;">
+                <li><a href="#">Projects</a></li>
+                <li><a href="#">About me</a></li>
+                <li><a href="#">Contact</a></li>
+                
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </nav>
+    </header>
+
+
+
+
+    <section class="image-container">
+        <div class="image-overlap">
+        <img src="C:\Users\LENOVO\Desktop\HTML\Portfolio\Vector 93.png" alt="Image 1" class="image-1" style="min-height: 300px; max-height: 400px;">
+        <img src="C:\Users\LENOVO\Desktop\HTML\Portfolio\Rectangle 33.png" alt="Image 2" class="image-2" style="min-height: 600px;">
+        <img src="C:\Users\LENOVO\Desktop\HTML\Portfolio\Vector 95.png" alt="Image 3" class="image-3" style="max-height: 400px;">
+        <div class="overlay-text" >
+            <div class="calistoga-regular" style="color: #2D3B66; letter-spacing: 15px; -webkit-text-stroke: 33px; -webkit-text-stroke-color: rgb(255, 251, 244); paint-order: stroke fill; margin-left: 10px;">
+                PORTFOLIO</div>
+        </div>
+        </div>
+        <img src="C:\Users\LENOVO\Desktop\HTML\Portfolio\Group 97.svg" alt="Image 4" class="image-4" style="max-height: 500px;">
+        <img src="C:\Users\LENOVO\Desktop\HTML\Portfolio\Vector 97.png" alt="Image 5" class="image-5" style="min-height:100px; max-height: 400px;">
+        <div class="overlay-text">
+            <div class="calistoga-regular" style="color: #2D3B66; text-align: left; margin-left: 80px; margin-top: 730px; ">
+    <p> Who am I?</p></div>
+    <div class="afacad-light" style="color: #2D3B66; text-align: left; margin-left: 80px;  margin-right: 580px; margin-top: 30px; line-height: 0.5; ">
+        <p1> I’m a UI/UX and graphic designer who (at least tries to) create visually appealing, user-friendly designs that balance aesthetics and functionality. My goal is to enhance usability while ensuring the design supports both the user and brand objectives.</p1></div>
+        <button class="styled-button">Read more</button>
+    </section>
+
+
+
+    <script>
+        const hamburger = document.querySelector('.hamburger');
+        const navLinks = document.querySelector('.nav-links');
+
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('nav-active');
+        });
+    </script>
+</body>
+</html>
