@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Afacad:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Calistoga&display=swap" rel="stylesheet">
+    <style>
+        /* Basic Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        .afacad-light {
+                font-family: "Afacad", sans-serif;
+                font-optical-sizing: auto;
+                font-weight: 400;
+                }
+                .afacad-bold {
+                font-family: "Afacad", sans-serif;
+                font-optical-sizing: auto;
+                font-weight: 700;
+                }
+        body {
+                    background-color: rgb(255, 251, 244);
+                    
+                    margin-top: 20px;
+                }
+        .calistoga-regular {
+                font-family: "Calistoga", serif;
+                font-weight: 400;
+                font-style: normal;
+                }
+
+
+        header {
+            background-color: rgb(255, 251, 244);
+            padding: 10px 20px;
+            position: fixed; /* Make the navbar stay on top */
+            top: 0;
+            width:100%;
+            z-index: 1000; 
+            
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo img {
+            width: 40px; /* Adjust logo size */
+            height: auto;
+            padding-top: 10px;
+            margin-left: 40px;
+        }
+
+        .nav-links {
+            
+            list-style: none;
+            display: flex;
+        }
+
+        .nav-links li {
+            margin-left: 30px;
+            
+        }
+
+        .nav-links a {
+            color: #2D3B66;
+            text-decoration: none;
+            font-size: 1rem;
+            transition: color 0.15s ease;
+        }
+
+        .nav-links a:hover {
+            color: #E5887A;
+            font-weight: 700;
+        }
+
+        /* Hamburger Menu */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        .hamburger .bar {
+            width: 25px;
+            height: 4px;
+            background-color: #2D3B66;
+            border-radius: 5px;
+            margin: 3px;
+            transition: all 0.15s ease;
+            
+        }
+
+        /* Responsive Styling */
+        @media (max-width: 768px) {
+            .nav-links {
+                position: absolute;
+                right: -80px;
+                top: 70px;
+                height: 90vh;
+                width: 100%;
+                
+                background-color: rgb(255,252,244);
+                flex-direction: column;
+                align-items: center;
+                justify-content: space-around;
+                transform: translateX(100%);
+                transition: transform 0.3s ease-in;
+            }
+
+            .nav-links li {
+                margin: 20px 0;
+            }
+
+            .hamburger {
+                display: flex;
+                margin-right: 30px;
+            }
+
+            .nav-active {
+                transform: translateX(0);
+            }
+        }
+
+        *,*:before,*:after {box-sizing:inherit;margin:0; padding:0; border:0 none; position: relative;}
+html {
+	background: #000;
+	box-sizing:border-box;
+	font-family: 'Vollkorn', sans-serif;
+	font-size: 1rem;
+	color: #000;
+}
+
+@media screen and (min-width: 300px) {
+	body > article {
+		display: flex;
+		flex-wrap: wrap;    
+	}
+	figure {
+		background: rgb(255, 251, 244);
+		width: calc( 50% + 1px);
+		height: 100vh;
+		margin: 0 auto 10vh 0;
+		position: sticky;
+		top: 0;
+		overflow: hidden;
+		box-shadow: 4px -4px 10px rgba(73, 73, 73, 0.4);
+			}
+	
+	
+	section {
+		background: rgb(255, 251, 244);
+		width: calc(50% + 1px);
+		height: 100vh;
+		margin: 0 0 10vh auto;
+		position: sticky;
+		top: 0;
+		overflow: hidden;
+		padding: 5vmin;
+		box-shadow: -4px -4px 10px rgba(73, 73, 73, 0.4);
+			}
+	figure:nth-of-type(1),
+	section:nth-of-type(1) {
+		margin: 0 0 10vh 0;
+		width: 50%;
+			}
+	figure:nth-of-type(2n) {
+		margin: 0 0 10vh auto;
+		box-shadow: -4px -4px 10px rgba(73, 73, 73, 0.4);
+			}
+	section:nth-of-type(2n) {
+		margin: 0 auto 10vh 0;
+		box-shadow: 4px -4px 10px rgba(73, 73, 73, 0.4);
+		}
+	figure:last-of-type,
+	section:last-of-type {
+		margin-bottom: 0;
+	}
+	
+	section > div {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		height: 100%;
+		padding: 1rem;
+	}
+	h1,
+	h2 {
+		margin: 15% 0 auto;
+		font-size: 90px;
+		text-align: center;
+		font-weight: 700;
+		line-height: 1;
+		word-spacing: .5rem;
+        font-family: "afacad", sans-serif;
+        color: #2D3B66;
+	}
+	p {
+		text-align: center;
+		width: 100%;
+		font-family: "afacad", sans-serif;
+		font-weight: 400;
+		font-size: 48px;
+		margin-bottom: 5%;
+	}
+
+    
+	
+}
+
+.footer {
+            
+            text-align: center;
+            padding: 20px 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Calistoga', serif;
+            font-size: 24px;
+            color: #2D3C73; /* Dark blue text */
+            
+        }
+
+        .footer a {
+            text-decoration: none;
+            color: #2D3C73; /* Dark blue text */
+            font-size: 24px;
+            
+            margin-right: 15px; /* Space between text and icons */
+            font-family: 'Calistoga', serif;
+        }
+
+        .footer-icons {
+            display: flex;
+            align-items: center;
+        }
+
+        .footer-icons a {
+            margin: 0 5px;
+            text-decoration: none;
+        }
+
+        .footer-icons img {
+            width: 34px; /* Adjust icon size */
+            height: 34px;
+        }
+                </style>
+                <body>
+                    <header class="afacad-light" style="color:#2D3B66; font-size: 24px;"> 
+                        <nav class="navbar">
+                            <a href="index.html">
+                            <div class="logo" >
+                                <img src="logo.png" width="40px" style="margin-left: 70px;">
+                            </div>
+                        </a>
+                            <ul class="nav-links" style="margin-right: 80px;">
+                                <li><a href="index.html">Projects</a></li>
+                                <li><a href="about_me_final.html">About me</a></li>
+                                <li><a href="contact.html">Contact</a></li>
+                                <li><a href="#">Gallery</a></li>
+                                
+                            </ul>
+                            <div class="hamburger">
+                                <span class="bar"></span>
+                                <span class="bar"></span>
+                                <span class="bar"></span>
+                                <span class="bar"></span>
+                            </div>
+                        </nav>
+                    </header>
+
+                    <article>
+                        <figure>
+                            <img src="7sins.png" style="height: 550px;">
+                            <p style="padding-top: 30px; font-weight: 900; color: #393636;">The seven deadly sins</p>
+                        </figure>
+                        <section>
+                                <div>
+                                    <h1 style=" font-family: 'calistoga'; margin-top: 130px;">Welcome to my gallery</h1>
+                                    <p style="font-size: 24px;color: #393636;margin-bottom: 100px;">Explore a collection of artworks, posters, and other creative projects, each thoughtfully designed to showcase unique ideas and artistic expression. From bold visuals to intricate details, this gallery reflects my passion behind every piece.</p>
+                                </div>
+                        </section>
+                        
+                        <figure>
+                            <img src="squares.png" style="height: 550px;">
+                            <p style="padding-top: 30px; font-weight: 900; color: #393636;">Itsy bitsy spider, but with a fun twist!</p>
+                        </figure>
+
+                        <figure>
+                            <img src="kidspos.png" style="height: 550px;">
+                            <p style="padding-top: 30px; font-weight: 900; color: #393636;">A kid's poster on a math concept.</p>
+                        </figure>
+                        <section>
+                            <div>
+                                <h2 style="margin-top: 180px;">Let's see some hand painted stuff, shall we?
+                                </h2>
+                                
+                            </div>
+                        </section>
+                        
+                        <figure>
+                            <img src="IMG_0845.jpg" style="height: 550px;">
+                            <p style="padding-top: 30px; font-weight: 900; color: #393636;">Indian art</p>
+                        </figure>
+
+
+                        <section>
+                            <img src="Untitled-11.png" style="height: 550px;">
+                            <p style="padding-top: 30px; font-weight: 900; color: #393636;">Baroque period cards</p>
+                           
+                        </section>
+                        
+                        <figure>
+                            <img src="bow.jpg"style="height: 550px;">
+                            <p style="padding-top: 30px; font-weight: 900; color: #393636;">A cutsey bow</p>>
+                        </figure>
+                        <section>
+                            <div>
+                                <h2 style="margin-top: 180px;">Physical typography coming ahead!
+                                </h2>
+                                
+                            </div>
+                        </section>
+                        
+                        <figure>
+                            <img src="aaaa.png"style="height: 550px;">
+                            <p style="padding-top: 30px; font-weight: 900; color: #393636;">The Silence of the Lambs</p>
+                        </figure>
+                        <section>
+                            <div>
+                                <img src="fssdvsvdfbeb.png"style="height: 550px;">
+                                <p style="padding-top: 30px; font-weight: 900; color: #393636;">The Perks of Being a Wallflower</p>
+                            </div>
+                        </section>
+                        
+                        <figure>
+                            <div>
+                                <h2 style="margin-top: 180px;">Some adorable<br> stuff for you to remember!
+                                </h2>
+                                
+                            </div>
+                        </figure>
+
+                        <figure>
+                            <img src="ggcard.png"style="height: 550px;">
+                            <p style="padding-top: 30px; font-weight: 900; color: #393636;">Zine!</p>
+                        </figure>
+                        <section>
+                            <div>
+                                <img src="cutes.png"style="height: 550px;">
+                                <p style="padding-top: 30px; font-weight: 900; color: #393636;">Stickers!</p>
+                            </div>
+                        </section>
+                        <section class="sect">
+                            <div>
+                                <h2 style="margin-top: 300px;">That's all for now!</h2>
+                                
+                            </div>
+                        </section>
+                        <div style="width: 1440px; height: 75px; background-color: rgb(255, 251, 244);">
+                    
+                        </div>
+                        
+                        
+                        
+                        
+                        
+                    </article>
+                    <div class="footer" style="background-color: rgb(255, 251, 244);">
+                        <div class="footer a">
+                        Still here? Let's&nbsp;&nbsp; <a href="#">connect</a></div>
+                        <div class="footer-icons">
+                            <a href="https://www.behance.net/ae80d506"><img src="behanceorange.svg" alt="Behance"></a>
+                            <a href="https://www.instagram.com/deepikaa_22/"><img src="insta.svg" alt="Instagram"></a>
+                            <a href="https://www.linkedin.com/in/deepikaa-varadharajan-41bb07220/"><img src="linkedin.svg" alt="Linkedin"></a>
+                        </div>
+                    </div>
+                </body>
+                </html>

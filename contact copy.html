@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fade-In Text on Scroll</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f4;
+      overflow-x: hidden; /* Prevent horizontal scroll bar */
+    }
+
+    .text-section {
+      max-width: calc(100% - 340px); /* Ensuring 170px margin on both sides */
+      margin: 100px auto;
+      padding: 20px;
+      opacity: 0;
+      transform: translateX(0);
+      transition: opacity 1s ease, transform 1s ease;
+    }
+
+    .left-fade {
+      transform: translateX(-50%); /* Move elements slightly off the screen */
+    }
+
+    .right-fade {
+      transform: translateX(50%); /* Move elements slightly off the screen */
+    }
+
+    .text-section h2 {
+      margin-bottom: 10px;
+      font-size: 40px; /* Larger heading size */
+    }
+
+    .text-section p {
+      font-size: 24px; /* Larger paragraph size */
+      line-height: 1.6;
+    }
+
+    .text-section.visible {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  </style>
+</head>
+<body>
+
+  <section class="text-section left-fade">
+    <h2>Heading 1</h2>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec at ligula sed orci porta fermentum.</p>
+  </section>
+
+  <section class="text-section right-fade">
+    <h2>Heading 2</h2>
+    <p>Nullam in felis vel risus blandit euismod vel eget eros. Sed imperdiet magna et urna fermentum dictum.</p>
+  </section>
+
+  <section class="text-section left-fade">
+    <h2>Heading 3</h2>
+    <p>Pellentesque sit amet dui quam. Etiam nec consequat ligula. Suspendisse potenti.</p>
+  </section>
+
+  <section class="text-section right-fade">
+    <h2>Heading 4</h2>
+    <p>Aliquam erat volutpat. Curabitur vehicula, augue a sollicitudin ultrices, lacus quam faucibus elit, et lacinia nulla mauris in dui.</p>
+  </section>
+
+  <script>
+    // Intersection Observer to detect when sections come into view
+    document.addEventListener('DOMContentLoaded', () => {
+      const sections = document.querySelectorAll('.text-section');
+
+      const observerOptions = {
+        root: null,
+        threshold: 0.1
+      };
+
+      const observerCallback = (entries, observer) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+          } else {
+            entry.target.classList.remove('visible'); // Revert animation on scroll out
+          }
+        });
+      };
+
+      const observer = new IntersectionObserver(observerCallback, observerOptions);
+
+      sections.forEach(section => observer.observe(section));
+    });
+  </script>
+
+</body>
+</html>
